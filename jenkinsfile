@@ -1,0 +1,30 @@
+pipeline{
+    agent any
+    stage{
+        stage('source'){
+            steps{
+                git'https://github.com/vj95sam/foodinc.git'
+                sh"npm install"
+                echo 'source stage finished'
+            }
+        }    
+        
+        stage('Test'){
+            steps{
+                sh "npm run cypress:run"
+                echo 'Test Stage Finished'
+            }
+        }
+        
+        stage('Build'){
+            steps{
+                sh "npm run build "
+                echi 'build stage Finished'
+            }
+        }
+
+
+
+
+        }
+}
